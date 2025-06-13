@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalculadoraControler.java">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalculadoraController">
    <children>
       <GridPane alignment="CENTER" layoutX="25.0" layoutY="139.0" prefHeight="247.0" prefWidth="250.0">
         <columnConstraints>
@@ -25,87 +26,87 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btNum1" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="96.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="1" textAlignment="CENTER" GridPane.rowIndex="3">
+            <Button fx:id="btNum1" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="96.0" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="1" textAlignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum2" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="136.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="btNum2" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="136.0" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum0" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="136.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="0" textAlignment="CENTER" GridPane.rowIndex="4">
+            <Button fx:id="btNum0" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="136.0" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="0" textAlignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btDividir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button fx:id="btDividir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOperadorClick" prefHeight="40.0" prefWidth="60.0" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btMultiplicar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="*" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button fx:id="btMultiplicar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOperadorClick" prefHeight="40.0" prefWidth="60.0" text="*" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btSubtrair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button fx:id="btSubtrair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOperadorClick" prefHeight="40.0" prefWidth="60.0" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btClear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="C" textAlignment="CENTER" GridPane.columnIndex="2">
+            <Button fx:id="btClear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLimparClick" prefHeight="40.0" prefWidth="60.0" text="C" textAlignment="CENTER" GridPane.columnIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum8" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btNum8" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum7" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="7" textAlignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btNum7" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="7" textAlignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum9" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="btNum9" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum4" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="4" textAlignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="btNum4" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="4" textAlignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum6" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="btNum6" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum5" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="btNum5" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btVirgula" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="," textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="btVirgula" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVirgulaClick" prefHeight="40.0" prefWidth="60.0" text="," textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btNum3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="btNum3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNumeroClick" prefHeight="40.0" prefWidth="60.0" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btIgual" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="=" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button fx:id="btIgual" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onIgualClick" prefHeight="40.0" prefWidth="60.0" text="=" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btSomar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Button fx:id="btSomar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOperadorClick" prefHeight="40.0" prefWidth="60.0" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
@@ -120,7 +121,7 @@
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btApagar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="&lt;-" textAlignment="CENTER" GridPane.columnIndex="3">
+            <Button fx:id="btApagar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onApagar" prefHeight="40.0" prefWidth="60.0" text="&lt;-" textAlignment="CENTER" GridPane.columnIndex="3">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
@@ -129,8 +130,9 @@
       </GridPane>
       <TextField fx:id="txfDisplay" alignment="CENTER_RIGHT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="60.0" prefWidth="280.0" text="0">
          <font>
-            <Font name="Arial Bold" size="28.0" />
+            <Font name="Arial Bold" size="33.0" />
          </font>
       </TextField>
+      <Label fx:id="lblExpressao" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="9.0" layoutY="34.0" prefHeight="20.0" prefWidth="280.0" textAlignment="RIGHT" />
    </children>
 </AnchorPane>

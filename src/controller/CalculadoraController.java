@@ -1,84 +1,159 @@
 package controller;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import model.CalculadoraModel;
 
 public class CalculadoraController {
-	
-	private CalculadoraModel model;
-	private CalculadoraView view;
-	
-	public CalculadoraController(CalculadoraModel model, CalculadoraView view) {
-		this.model = model;
-		this.view = view;
-		
-		configurarEventos();
-		
-		atualizarDisplay();
+
+	private final CalculadoraModel calculadora = new CalculadoraModel();
+
+	@FXML
+	private void initialize() {
+		Platform.runLater(() -> rootPane.requestFocus());
+
+		rootPane.setOnKeyPressed(this::handleTeclado);
 	}
-	
-	private void configurarEventos() {
-		for (int i = 0; i <= 9; i++) {
-			final int numero = i;
-			view.getBtNum(i).setOnAction(e -> 1{
-				model.adicionarDigito(numero);
-				atualizarDisplay();
-			});
+
+	@FXML
+	private void onNumeroClick(ActionEvent event) {
+		String valor = ((Button) event.getSource()).getText();
+		String novoTexto = calculadora.adicionarDigito(valor);
+		txfDisplay.setText(novoTexto);
+	}
+
+	@FXML
+	private void onOperadorClick(ActionEvent event) {
+		String operador = ((Button) event.getSource()).getText();
+		lblExpressao.setText(calculadora.definirOperacao(operador));
+	}
+
+	@FXML
+	private void onIgualClick(ActionEvent event) {
+		String resultado = calculadora.calcular();
+		txfDisplay.setText(resultado);
+		lblExpressao.setText("");
+	}
+
+	@FXML
+	private void onLimparClick(ActionEvent event) {
+		calculadora.limpar();
+		txfDisplay.setText("0");
+		lblExpressao.setText("");
+	}
+
+	@FXML
+	private void onApagar() {
+		String textoAtual = txfDisplay.getText();
+
+		if (textoAtual.equals("0") && textoAtual.isEmpty()) {
+			return;
 		}
-		
-		view.getBtSomar().setOnAction(e -> {
-			model.definirOperacao("+");
-			atualizarDisplay();
-		});
-		
+		textoAtual = textoAtual.substring(0, textoAtual.length() - 1);
+
+		if (textoAtual.isEmpty()) {
+			txfDisplay.setText("0");
+			calculadora.novaOperacao = true;
+		} else {
+			txfDisplay.setText(textoAtual);
+		}
 	}
-	
+
+	private void handleTeclado(KeyEvent event) {
+		String tecla = event.getText();
+
+		if (tecla.equals(",") || tecla.equals(".")) {
+			txfDisplay.setText(calculadora.adicionarVirgula());
+		} else {
+			switch (event.getCode()) {
+			case DIGIT0, NUMPAD0 -> txfDisplay.setText(calculadora.adicionarDigito("0"));
+			case DIGIT1, NUMPAD1 -> txfDisplay.setText(calculadora.adicionarDigito("1"));
+			case DIGIT2, NUMPAD2 -> txfDisplay.setText(calculadora.adicionarDigito("2"));
+			case DIGIT3, NUMPAD3 -> txfDisplay.setText(calculadora.adicionarDigito("3"));
+			case DIGIT4, NUMPAD4 -> txfDisplay.setText(calculadora.adicionarDigito("4"));
+			case DIGIT5, NUMPAD5 -> txfDisplay.setText(calculadora.adicionarDigito("5"));
+			case DIGIT6, NUMPAD6 -> txfDisplay.setText(calculadora.adicionarDigito("6"));
+			case DIGIT7, NUMPAD7 -> txfDisplay.setText(calculadora.adicionarDigito("7"));
+			case DIGIT8, NUMPAD8 -> txfDisplay.setText(calculadora.adicionarDigito("8"));
+			case DIGIT9, NUMPAD9 -> txfDisplay.setText(calculadora.adicionarDigito("9"));
+			case PLUS, ADD -> lblExpressao.setText(calculadora.definirOperacao("+"));
+			case MINUS, SUBTRACT -> lblExpressao.setText(calculadora.definirOperacao("-"));
+			case MULTIPLY -> lblExpressao.setText(calculadora.definirOperacao("*"));
+			case DIVIDE, SLASH -> lblExpressao.setText(calculadora.definirOperacao("/"));
+			case ENTER, EQUALS -> txfDisplay.setText(calculadora.calcular());
+			case ESCAPE -> onLimparClick(null);
+			case BACK_SPACE -> {
+				String atual = txfDisplay.getText();
+				if (!atual.isEmpty() && !calculadora.novaOperacao) {
+					txfDisplay.setText(atual.substring(0, atual.length() - 1));
+				}
+			}
+			}
+		}
+		event.consume();
+	}
+
 	@FXML
-	private Button btPorcentagem;	
+	private void onVirgulaClick(ActionEvent event) {
+		txfDisplay.setText(calculadora.adicionarVirgula());
+	}
+
 	@FXML
-	private Button btClear2;	
+	private void manterFoco() {
+		Platform.runLater(() -> rootPane.requestFocus());
+	}
+
 	@FXML
-	private Button btClear;	
+	private Button btPorcentagem;
 	@FXML
-	private Button btApagar;	
+	private Button btClear2;
 	@FXML
-	private Button btDividir;	
+	private Button btClear;
 	@FXML
-	private Button btMultiplicar;	
+	private Button btApagar;
 	@FXML
-	private Button btSubtrair;	
+	private Button btDividir;
 	@FXML
-	private Button btSomar;	
+	private Button btMultiplicar;
 	@FXML
-	private Button btIgual;	
+	private Button btSubtrair;
 	@FXML
-	private Button btVirgula;	
+	private Button btSomar;
 	@FXML
-	private Button bt0;	
+	private Button btIgual;
 	@FXML
-	private Button bt1;	
+	private Button btVirgula;
 	@FXML
-	private Button bt2;	
+	private Button bt0;
 	@FXML
-	private Button bt3;	
+	private Button bt1;
 	@FXML
-	private Button bt4;	
+	private Button bt2;
 	@FXML
-	private Button bt5;	
+	private Button bt3;
 	@FXML
-	private Button bt6;	
+	private Button bt4;
 	@FXML
-	private Button bt7;	
+	private Button bt5;
 	@FXML
-	private Button bt8;	
+	private Button bt6;
+	@FXML
+	private Button bt7;
+	@FXML
+	private Button bt8;
 	@FXML
 	private Button bt9;
-	
 	@FXML
 	private TextField txfDisplay;
-	
-	
-	
+	@FXML
+	private Label lblExpressao;
+	@FXML
+	private AnchorPane rootPane;
+
 }
